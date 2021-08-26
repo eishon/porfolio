@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class HomePage extends StatelessWidget {
-  late Size _screenSize;
-
   @override
   Widget build(BuildContext context) {
-    _screenSize = MediaQuery.of(context).size;
+    Size _screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       body: Container(
@@ -22,17 +20,23 @@ class HomePage extends StatelessWidget {
                     Image.network(
                       'https://picsum.photos/seed/picsum/${_screenSize.width}/360',
                     ),
-                    Positioned(
-                      bottom: 0,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(256.0),
-                        child: Image.asset(
-                          'assets/pic.png',
-                          height: 180,
-                          width: 180,
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        width: 200,
+                        child: CircleAvatar(
+                          radius: 100,
+                          backgroundImage: ExactAssetImage('assets/pic.png'),
+                        ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 4.0,
+                          ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               )

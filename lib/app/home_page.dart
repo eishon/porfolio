@@ -23,17 +23,31 @@ class HomePage extends StatelessWidget {
                       'https://picsum.photos/seed/picsum/${_screenSize.width}/360',
                     ),
                     Positioned(
+                      left: 100,
                       bottom: 0,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(256.0),
                         child: Image.asset(
                           'assets/pic.png',
-                          height: 180,
-                          width: 180,
+                          height: 256,
+                          width: 256,
+                          fit:BoxFit.fitWidth,
                         ),
                       ),
                     )
                   ],
+                ),
+              ),
+              SizedBox(height: 200),
+              Container(
+                height: 200,
+                child: Text(
+                  'Hi, I am Eishon. I love developing and currently working as a Mobile Application developer',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Colors.white,
+                  ),
                 ),
               )
             ],

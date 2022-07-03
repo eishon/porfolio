@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class HomePage extends StatelessWidget {
   late Size _screenSize;
@@ -7,6 +7,26 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _screenSize = MediaQuery.of(context).size;
+
+    Widget youtubeVideo(String videoCode) {
+      return SizedBox(
+        height: 315,
+        width: 560,
+        child: Html(
+          data:
+              '<iframe width="560" height="315" src="https://www.youtube.com/embed/$videoCode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+        ),
+      );
+    }
+
+    List list = [
+      'Hqgi_7droLE&t',
+      'XL8YCOJatNQ&t',
+      'jT49R3fj7hs',
+      'wpaJt358J3E&t',
+      'lFkxmUYvuNY',
+      'wiaZfO2RnnI'
+    ];
 
     return Scaffold(
       body: Container(
@@ -19,11 +39,13 @@ class HomePage extends StatelessWidget {
                 child: Stack(
                   alignment: AlignmentDirectional.center,
                   children: [
-                    Image.network(
-                      'https://picsum.photos/seed/picsum/${_screenSize.width}/360',
+                    Positioned(
+                      top: 0,
+                      child: Image.network(
+                        'https://picsum.photos/seed/picsum/${_screenSize.width}/360',
+                      ),
                     ),
                     Positioned(
-                      left: 100,
                       bottom: 0,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(256.0),
@@ -31,23 +53,32 @@ class HomePage extends StatelessWidget {
                           'assets/pic.png',
                           height: 256,
                           width: 256,
-                          fit:BoxFit.fitWidth,
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-              SizedBox(height: 200),
+              SizedBox(height: 100),
               Container(
                 height: 200,
                 child: Text(
-                  'Hi, I am Eishon. I love developing and currently working as a Mobile Application developer',
-                  textAlign: TextAlign.left,
+                  'Hi, I am Eishon.\n\nA passonate software Engineer with various experince in mobile application development.',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 32,
                     color: Colors.white,
                   ),
+                ),
+              ),
+              SizedBox(height: 100),
+              Container(
+                height: 720,
+                child: GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 3,
+                  children: list.map((url) => youtubeVideo(url)).toList(),
                 ),
               )
             ],
